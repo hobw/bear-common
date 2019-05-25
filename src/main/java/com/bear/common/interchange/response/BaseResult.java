@@ -2,7 +2,9 @@ package com.bear.common.interchange.response;
 
 import java.io.Serializable;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 /**
  * @author vam
@@ -12,6 +14,7 @@ import lombok.Data;
  *
  */
 @Data
+@Accessors(chain = true)
 public class BaseResult implements Serializable {
 
   /**
