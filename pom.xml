@@ -2,12 +2,19 @@
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
 
+
+    <parent>
+        <groupId>com.bear.boot</groupId>
+        <artifactId>bear-dependencies</artifactId>
+        <version>1.0.0-RELEASE</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
     <groupId>com.bear.common</groupId>
     <artifactId>bear-common</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.0-SNAPSHOTS</version>
+    <version>1.0.0-SNAPSHOT</version>
     <name>bear-common</name>
 
 
@@ -28,14 +35,12 @@
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
-            <version>${aspectj.aspectjweaver}</version>
         </dependency>
 
         <!-- hibernate-validator默认使用jboss的logging, 去除该log, 使用slf4j作为日志 -->
         <dependency>
-            <groupId>org.hibernate</groupId>
+            <groupId>org.hibernate.validator</groupId>
             <artifactId>hibernate-validator</artifactId>
-            <version>${hibernate.validator}</version>
             <exclusions>
                 <exclusion>
                     <artifactId>jboss-logging</artifactId>
@@ -47,37 +52,19 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>${project.lombok}</version>
         </dependency>
 
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <version>${apache.commons}</version>
         </dependency>
 
 
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
-            <version>${slf4j.log4j}</version>
         </dependency>
 
-
     </dependencies>
-
-    <distributionManagement>
-        <repository>
-            <id>releases</id>
-            <name>nexus-releases</name>
-            <url>http://47.96.93.115:5555/repository/maven-releases/</url>
-        </repository>
-        <snapshotRepository>
-            <id>snapshots</id>
-            <name>nexus-snapshots</name>
-            <url>http://47.96.93.115:5555/repository/maven-snapshots/</url>
-        </snapshotRepository>
-    </distributionManagement>
-
 
 </project>
