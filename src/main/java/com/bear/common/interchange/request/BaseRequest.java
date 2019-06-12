@@ -13,9 +13,20 @@ import lombok.Data;
 @Data
 public class BaseRequest implements Serializable {
 
+
   /**
-   * 调用方需要透传的traceId（不需要业务方关心，由框架完成）
+   * 组织(公司)id
    */
-  private String traceId;
+  private Long holeId;
+
+  /**
+   * 操作人ID
+   */
+  private Long antId;
+
+  /**
+   * 调用来源
+   */
+  private String resourse;
 
 }
