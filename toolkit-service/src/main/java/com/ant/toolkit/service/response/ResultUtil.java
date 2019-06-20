@@ -2,13 +2,13 @@ package com.ant.toolkit.service.response;
 
 
 import com.ant.toolkit.exception.IError;
+
 import java.util.List;
 
 /**
  * @author vam
  * @version 1.0
  * @date 2019-06-20 15:29
- *
  */
 public class ResultUtil {
 
@@ -18,7 +18,7 @@ public class ResultUtil {
   private static final String SUCCESS_MSG = "success";
 
 
-  public static <T> BaseResult createSuccessResult(T t) {
+  public static <T> PlainResult<T> createSuccessResult(T t) {
 
     return createSuccessResult(t, new IError() {
       public String getMessage() {
@@ -31,26 +31,25 @@ public class ResultUtil {
     });
   }
 
-  public static <T> BaseResult createSuccessResult(T t, IError error) {
+  public static <T> PlainResult<T> createSuccessResult(T t, IError error) {
 
-
-    if (t instanceof Boolean) {
-      BaseResult result = new BaseResult();
-      result.setCode(error.getCode());
-      result.setMessage(error.getMessage());
-      result.setSuccess(true);
-      return result;
-    } else {
-      PlainResult<T> result = new PlainResult();
-      result.setData(t);
-      result.setCode(error.getCode());
-      result.setMessage(error.getMessage());
-      result.setSuccess(true);
-      return result;
-    }
+    PlainResult<T> result = new PlainResult();
+    result.setData(t);
+    result.setCode(error.getCode());
+    result.setMessage(error.getMessage());
+    result.setSuccess(true);
+    return result;
   }
 
-  public static BaseResult createFailResult(IError error) {
+  public static PlainResult createFailPlainResult(IError error) {
+    return (PlainResult) createFailResult(error);
+  }
+
+  public static ListResult createFailListResult(IError error) {
+    return (ListResult) createFailResult(error);
+  }
+
+  private static BaseResult createFailResult(IError error) {
 
     BaseResult result = new BaseResult();
     result.setCode(error.getCode());
@@ -73,8 +72,8 @@ public class ResultUtil {
     });
   }
 
-  public static <T> ListResult<T> createSuccessResult(List<T> t, Integer pageSize, Integer pageNo, Integer total,
-                                                      IError error) {
+  public static <T> ListResult<T> createSuccessResult(
+      List<T> t, Integer pageSize, Integer pageNo, Integer total, IError error) {
 
     ListResult result = new ListResult();
     Paginator paginator = new Paginator(pageNo, pageSize, total);
